@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_photos/models/models.dart';
 
 class Photo extends Equatable {
   final String id;
