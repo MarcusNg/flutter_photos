@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_photos/models/photo_model.dart';
+import 'package:flutter_photos/models/models.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotoViewerScreen extends StatefulWidget {
