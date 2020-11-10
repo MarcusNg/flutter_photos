@@ -28,6 +28,8 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   ) async* {
     if (event is PhotosSearchPhotos) {
       yield* _mapPhotosSearchPhotosToState(event);
+    } else if (event is PhotosPaginate) {
+      yield* _mapPhotosPaginateToState();
     }
   }
 
@@ -47,5 +49,23 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
         status: PhotosStatus.error,
       );
     }
+  }
+
+  Stream<PhotosState> _mapPhotosPaginateToState() async* {
+    yield state.copyWith(status: PhotosStatus.paginating);
+
+    final photos = List<Photo>.from(state.photos);
+    List<Photo> nextPhotos = [];
+    if (photos.length >= PhotosRepository.numPerPage) {
+      nextPhotos = await _photosRepository.searchPhotos(
+          query: state.query,
+          page: state.photos.length ~/ PhotosRepository.numPerPage + 1);
+    }
+    yield state.copyWith(
+      photos: photos..addAll(nextPhotos),
+      status: nextPhotos.isNotEmpty
+          ? PhotosStatus.loaded
+          : PhotosStatus.noMorePhotos,
+    );
   }
 }

@@ -1,6 +1,6 @@
 part of 'photos_bloc.dart';
 
-enum PhotosStatus { initial, loading, loaded, error }
+enum PhotosStatus { initial, loading, loaded, paginating, noMorePhotos, error }
 
 class PhotosState extends Equatable {
   final String query;

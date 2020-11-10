@@ -18,3 +18,5 @@ class PhotosSearchPhotos extends PhotosEvent {
   @override
   List<Object> get props => [query];
 }
+
+class PhotosPaginate extends PhotosEvent {}
