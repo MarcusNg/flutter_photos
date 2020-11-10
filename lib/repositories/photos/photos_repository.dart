@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_photos/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_photos/models/photo_model.dart';
 import 'package:flutter_photos/repositories/repositories.dart';
@@ -34,6 +35,6 @@ class PhotosRepository extends BasePhotosRepository {
       final List<Photo> photos = results.map((e) => Photo.fromMap(e)).toList();
       return photos;
     }
-    return [];
+    throw Failure();
   }
 }

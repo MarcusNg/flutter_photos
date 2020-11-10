@@ -17,7 +17,24 @@ class _PhotosScreenState extends State<PhotosScreen> {
         appBar: AppBar(
           title: const Text('Photos'),
         ),
-        body: BlocBuilder<PhotosBloc, PhotosState>(
+        body: BlocConsumer<PhotosBloc, PhotosState>(
+          listener: (context, state) {
+            if (state.status == PhotosStatus.error) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Search Error'),
+                  content: Text(state.failure.message),
+                  actions: [
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
           builder: (context, state) {
             return Stack(
               alignment: Alignment.center,
