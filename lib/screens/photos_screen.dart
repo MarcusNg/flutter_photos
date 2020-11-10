@@ -35,7 +35,24 @@ class _PhotosScreenState extends State<PhotosScreen> {
         ),
         body: BlocConsumer<PhotosBloc, PhotosState>(
           listener: (context, state) {
-            if (state.status == PhotosStatus.error) {
+            if (state.status == PhotosStatus.paginating) {
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text('Loading more photos...'),
+                  duration: Duration(seconds: 1),
+                ),
+              );
+            } else if (state.status == PhotosStatus.noMorePhotos) {
+              Scaffold.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text('No more photos.'),
+                  duration: Duration(milliseconds: 1500),
+                ),
+              );
+            } else if (state.status == PhotosStatus.error) {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
