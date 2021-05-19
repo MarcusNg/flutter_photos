@@ -12,7 +12,7 @@ part 'photos_state.dart';
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   final PhotosRepository _photosRepository;
 
-  PhotosBloc({@required PhotosRepository photosRepository})
+  PhotosBloc({required PhotosRepository photosRepository})
       : _photosRepository = photosRepository,
         super(PhotosState.initial());
 

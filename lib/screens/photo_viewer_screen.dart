@@ -9,9 +9,9 @@ class PhotoViewerScreen extends StatefulWidget {
   final int currentIndex;
 
   const PhotoViewerScreen({
-    Key key,
-    @required this.photos,
-    @required this.currentIndex,
+    Key? key,
+    required this.photos,
+    required this.currentIndex,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class PhotoViewerScreen extends StatefulWidget {
 }
 
 class _PhotoViewerScreenState extends State<PhotoViewerScreen> {
-  PageController _pageController;
+  late PageController _pageController;
 
   @override
   void initState() {
