@@ -10,10 +10,10 @@ class PhotoCard extends StatelessWidget {
   final Photo photo;
 
   const PhotoCard({
-    Key key,
-    @required this.photos,
-    @required this.index,
-    @required this.photo,
+    Key? key,
+    required this.photos,
+    required this.index,
+    required this.photo,
   }) : super(key: key);
 
   @override

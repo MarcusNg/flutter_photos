@@ -9,7 +9,7 @@ class PhotosScreen extends StatefulWidget {
 }
 
 class _PhotosScreenState extends State<PhotosScreen> {
-  ScrollController _scrollController;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
@@ -36,8 +36,8 @@ class _PhotosScreenState extends State<PhotosScreen> {
         body: BlocConsumer<PhotosBloc, PhotosState>(
           listener: (context, state) {
             if (state.status == PhotosStatus.paginating) {
-              Scaffold.of(context).hideCurrentSnackBar();
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.green,
                   content: Text('Loading more photos...'),
@@ -45,7 +45,7 @@ class _PhotosScreenState extends State<PhotosScreen> {
                 ),
               );
             } else if (state.status == PhotosStatus.noMorePhotos) {
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.red,
                   content: Text('No more photos.'),
@@ -57,9 +57,9 @@ class _PhotosScreenState extends State<PhotosScreen> {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: Text('Search Error'),
-                  content: Text(state.failure.message),
+                  content: Text(state.failure!.message),
                   actions: [
-                    FlatButton(
+                    TextButton(
                       onPressed: () => Navigator.of(context).pop(),
                       child: Text('OK'),
                     ),

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_photos/models/models.dart';
 import 'package:flutter_photos/repositories/repositories.dart';
 
@@ -12,7 +11,7 @@ part 'photos_state.dart';
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   final PhotosRepository _photosRepository;
 
-  PhotosBloc({@required PhotosRepository photosRepository})
+  PhotosBloc({required PhotosRepository photosRepository})
       : _photosRepository = photosRepository,
         super(PhotosState.initial());
 

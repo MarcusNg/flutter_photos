@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
 class User extends Equatable {
   final String id;
@@ -8,14 +7,13 @@ class User extends Equatable {
   final String profileUrl;
 
   const User({
-    @required this.id,
-    @required this.name,
-    @required this.profileImageUrl,
-    @required this.profileUrl,
+    required this.id,
+    required this.name,
+    required this.profileImageUrl,
+    required this.profileUrl,
   });
 
   factory User.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
     return User(
       id: map['id'],
       name: map['name'],

@@ -13,7 +13,7 @@ abstract class PhotosEvent extends Equatable {
 class PhotosSearchPhotos extends PhotosEvent {
   final String query;
 
-  const PhotosSearchPhotos({@required this.query});
+  const PhotosSearchPhotos({required this.query});
 
   @override
   List<Object> get props => [query];
